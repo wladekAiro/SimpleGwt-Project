@@ -1,4 +1,4 @@
-package com.wladek.project.server.models.shared;
+package com.wladek.project.client.models;
 
 import java.io.Serializable;
 
@@ -6,6 +6,10 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class MoviesDto implements Serializable, IsSerializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String description;
 	private Long id;

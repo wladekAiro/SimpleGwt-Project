@@ -1,12 +1,12 @@
-package com.wladek.project.server.shared.handlers;
+package com.wladek.project.server.actionHandlers;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.rpc.server.ExecutionContext;
 import com.gwtplatform.dispatch.rpc.server.actionhandler.ActionHandler;
 import com.gwtplatform.dispatch.shared.ActionException;
+import com.wladek.project.client.requests.GetMoviesRequest;
+import com.wladek.project.client.responses.GetMoviesResponse;
 import com.wladek.project.server.models.dao.helpers.MoviesDaoHelper;
-import com.wladek.project.server.shared.requests.GetMoviesRequest;
-import com.wladek.project.server.shared.response.GetMoviesResponse;
 
 public class GetMoviesRequestHandler implements ActionHandler<GetMoviesRequest, GetMoviesResponse> {
 
@@ -14,10 +14,16 @@ public class GetMoviesRequestHandler implements ActionHandler<GetMoviesRequest, 
 	MoviesDaoHelper daoHelper;
 
 	@Override
-	public GetMoviesResponse execute(GetMoviesRequest arg0, ExecutionContext arg1) throws ActionException {
-		GetMoviesResponse resp = (GetMoviesResponse) arg1;
-		resp.setMoviesDtos(daoHelper.getAll());
-		return resp;
+	public GetMoviesResponse execute(GetMoviesRequest request, ExecutionContext arg1) throws ActionException {
+		String action = request.getMethod();
+		
+		GetMoviesResponse response = null;
+		
+		if(action.equals("GET")){
+			response = new GetMoviesResponse(daoHelper.getAll());
+		}
+		
+		return response;
 	}
 
 	@Override

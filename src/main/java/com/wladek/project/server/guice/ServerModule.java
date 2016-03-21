@@ -1,8 +1,8 @@
 package com.wladek.project.server.guice;
 
 import com.gwtplatform.dispatch.rpc.server.guice.HandlerModule;
-import com.wladek.project.server.shared.handlers.GetMoviesRequestHandler;
-import com.wladek.project.server.shared.requests.GetMoviesRequest;
+import com.wladek.project.client.requests.GetMoviesRequest;
+import com.wladek.project.server.actionHandlers.GetMoviesRequestHandler;
 
 public class ServerModule extends HandlerModule {
     @Override

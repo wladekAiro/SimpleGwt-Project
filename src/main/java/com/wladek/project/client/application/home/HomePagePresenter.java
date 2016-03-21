@@ -2,16 +2,12 @@ package com.wladek.project.client.application.home;
 
 import com.wladek.project.client.application.header.header.HeaderPresenter;
 import com.wladek.project.client.application.home.movie.MoviePresenter;
+import com.wladek.project.client.models.MoviesDto;
 import com.wladek.project.client.place.NameTokens;
-import com.wladek.project.server.models.shared.MoviesDto;
-import com.wladek.project.server.shared.requests.GetMoviesRequest;
-import com.wladek.project.server.shared.response.GetMoviesResponse;
-
-import java.util.List;
-
+import com.wladek.project.client.requests.GetMoviesRequest;
+import com.wladek.project.client.responses.GetMoviesResponse;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
@@ -47,17 +43,19 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 
 	@Inject
 	PlaceManager placeManger;
-	
-	private DispatchAsync dispatchAsync;
+	private DispatchAsync dyAsync;
+
+	MoviesDto dto;
 
 	private IndirectProvider<MoviePresenter> movieFactory;
 
 	@Inject
-	HomePagePresenter(EventBus eventBus, MyView view, MyProxy proxy, Provider<MoviePresenter> provider , final DispatchAsync dispatchAsync) {
+	HomePagePresenter(EventBus eventBus, MyView view, MyProxy proxy, Provider<MoviePresenter> provider,
+			final DispatchAsync dyAsync) {
 		super(eventBus, view, proxy);
 
 		this.movieFactory = new StandardProvider<>(provider);
-		this.dispatchAsync = dispatchAsync;
+		this.dyAsync = dyAsync;
 	}
 
 	@Override
@@ -84,45 +82,43 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 		});
 
 		setInSlot(SLOT_MOVIES, null);
-		
+
 		bindMovies();
+	}
+
+	private void bindMovies() {
+		GetMoviesRequest action = new GetMoviesRequest("GET");
+		
+		dyAsync.execute(action, new AsyncCallback<GetMoviesResponse>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				
+			}
+
+			@Override
+			public void onSuccess(GetMoviesResponse result) {
+				
+				for(final MoviesDto m : result.getMoviesDtos()){
+					movieFactory.get(new AsyncCallback<MoviePresenter>() {
+
+						@Override
+						public void onSuccess(MoviePresenter result) {
+							result.bindMovie(m);
+							addToSlot(SLOT_MOVIES, result);
+						}
+
+						@Override
+						public void onFailure(Throwable caught) {
+						}
+					});
+				}
+			}
+		});
 	}
 
 	@Override
 	public void onBind() {
 	}
-	
-	public void bindMovies(){
-		GetMoviesRequest request = new GetMoviesRequest();
-		
-		dispatchAsync.execute(request, new AsyncCallback<GetMoviesResponse>() {
 
-			@Override
-			public void onSuccess(GetMoviesResponse result) {
-				List<MoviesDto> moviesDtos = result.getMoviesDtos();
-				
-				Window.alert(" SIZE "+moviesDtos.size());
-				
-				for(final MoviesDto m  : moviesDtos){
-					movieFactory.get(new AsyncCallback<MoviePresenter>() {
-						
-						@SuppressWarnings("deprecation")
-						@Override
-						public void onSuccess(MoviePresenter result) {
-//							result.bindMovie(m);
-							addToSlot(SLOT_MOVIES, result);
-						}
-						
-						@Override
-						public void onFailure(Throwable caught) {	
-						}
-					});	
-				}
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-			}
-		});
-	}
 }

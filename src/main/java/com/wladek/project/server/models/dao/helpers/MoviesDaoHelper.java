@@ -6,7 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.wladek.project.server.models.shared.MoviesDto;
+import com.wladek.project.client.models.MoviesDto;
 
 public class MoviesDaoHelper {
    Logger logger = LoggerFactory.getLogger(MoviesDaoHelper.class);

@@ -7,7 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
-import com.wladek.project.server.models.shared.MoviesDto;
+import com.wladek.project.client.models.MoviesDto;
 
 class MovieView extends ViewWithUiHandlers<MovieUiHandlers> implements MoviePresenter.MyView {
     interface Binder extends UiBinder<Widget, MovieView> {
@@ -16,15 +16,24 @@ class MovieView extends ViewWithUiHandlers<MovieUiHandlers> implements MoviePres
     @UiField
     Label movieId;
     
-//    MoviesDto movie;
+    private MoviesDto movie;
     
     @Inject
     MovieView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
-        movieId.setText(" Presenter widget ");
     }
 
 	public Label getMovieId() {
 		return movieId;
-	}	
+	}
+
+	public MoviesDto getMovie() {
+		return movie;
+	}
+
+	public void setMovie(MoviesDto movie2) {
+		this.movie = movie2;
+		movieId.setText(movie.getName());
+	}
+	
 }

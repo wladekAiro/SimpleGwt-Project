@@ -1,9 +1,9 @@
-package com.wladek.project.server.shared.response;
+package com.wladek.project.client.responses;
 
 import java.util.List;
 
 import com.gwtplatform.dispatch.rpc.shared.Result;
-import com.wladek.project.server.models.shared.MoviesDto;
+import com.wladek.project.client.models.MoviesDto;
 
 public class GetMoviesResponse implements Result{
 
@@ -17,11 +17,11 @@ public class GetMoviesResponse implements Result{
 	public GetMoviesResponse(){
 	}
 
+	public GetMoviesResponse(List<MoviesDto> moviesDtos){
+		this.moviesDtos = moviesDtos;
+	}
+	
 	public List<MoviesDto> getMoviesDtos() {
 		return moviesDtos;
-	}
-
-	public void setMoviesDtos(List<MoviesDto> moviesDtos) {
-		this.moviesDtos = moviesDtos;
 	}
 }
