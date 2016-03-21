@@ -1,4 +1,14 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <g:HTMLPanel>Hello World!</g:HTMLPanel>
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	<g:HTMLPanel>
+		<div>
+			<h3>Movies</h3>
+		</div>
+		<div>
+		    <g:Label text="Label with text" ui:field="firstLabel"></g:Label>
+		    <g:TextBox ui:field="firstTextBox"></g:TextBox>
+		    <g:Button ui:field="firstButton" text="Click me"></g:Button>
+		    <g:HTMLPanel ui:field="moviesList"></g:HTMLPanel>
+		</div>
+	</g:HTMLPanel>
 </ui:UiBinder>

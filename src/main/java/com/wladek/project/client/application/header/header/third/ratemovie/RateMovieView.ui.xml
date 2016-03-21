@@ -1,0 +1,11 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <g:HTMLPanel>
+        <p>
+            <h4>Do you like this movie?</h4>
+        </p>
+        <g:Button text="Yes" ui:field="yesBtn"></g:Button>
+        <g:Button text="No" ui:field="noBtn"></g:Button>
+    </g:HTMLPanel>
+</ui:UiBinder>

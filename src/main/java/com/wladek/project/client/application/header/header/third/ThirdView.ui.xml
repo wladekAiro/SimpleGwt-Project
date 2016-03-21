@@ -1,0 +1,10 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <g:HTMLPanel>
+        <h2>Ratings presenter</h2>
+        <hr/>
+        <g:Hyperlink text="Home" targetHistoryToken="home"></g:Hyperlink>
+        <g:HTMLPanel ui:field="ratePanel"></g:HTMLPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>

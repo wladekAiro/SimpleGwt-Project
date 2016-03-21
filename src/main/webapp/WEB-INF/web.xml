@@ -6,7 +6,7 @@
     <display-name>movies</display-name>
 
     <welcome-file-list>
-        <welcome-file>movies.jsp</welcome-file>
+        <welcome-file>movies.html</welcome-file>
     </welcome-file-list>
 
     <listener>
