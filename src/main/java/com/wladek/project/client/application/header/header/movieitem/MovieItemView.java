@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.wladek.project.client.models.MoviesDto;
 
 class MovieItemView extends ViewImpl implements MovieItemPresenter.MyView {
     interface Binder extends UiBinder<Widget, MovieItemView> {
@@ -14,7 +15,7 @@ class MovieItemView extends ViewImpl implements MovieItemPresenter.MyView {
     
     @UiField
     Label movieTitleLabel;
-
+    
     @Inject
     MovieItemView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));

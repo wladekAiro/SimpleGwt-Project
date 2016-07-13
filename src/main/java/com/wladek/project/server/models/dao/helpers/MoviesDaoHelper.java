@@ -2,17 +2,20 @@ package com.wladek.project.server.models.dao.helpers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.google.inject.Inject;
 import com.wladek.project.client.models.MoviesDto;
+import com.wladek.project.server.models.dao.MoviesDao;
 
 public class MoviesDaoHelper {
-   Logger logger = LoggerFactory.getLogger(MoviesDaoHelper.class);
+   Logger logger = Logger.getLogger("MOVIES DAO HELPER");
+   
+   @Inject
+   MoviesDao dao;
    
    public List<MoviesDto> getAll(){
-	   List<MoviesDto> movies = new ArrayList<>();
+	   List<MoviesDto> movies = new ArrayList<MoviesDto>();
 	    
 	   MoviesDto dto = new MoviesDto();
 	   dto.setId(new Long(1));
@@ -42,16 +45,18 @@ public class MoviesDaoHelper {
    }
    
    public MoviesDto getOne(Long id){
-	   List<MoviesDto> movies = getAll();
 	   
-	   MoviesDto movie = null;
+	   logger.info(" ++++ GET SINGLE MOVIE ++++ "+id);
 	   
-	   for(MoviesDto dto : movies){
+	   logger.info(" ++++ TOTAL ++++ "+getAll().size());
+	   
+	   for(MoviesDto dto : getAll()){
 		   if(dto.getId() == id){
-			   movie = dto;
+			   logger.info(" +++++ MOVIE NAME ++++ "+dto.getName());
+			   return dto;
 		   }
 	   }
 	   
-	   return movie;
+	   return null;
    }
 }

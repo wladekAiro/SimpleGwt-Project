@@ -4,5 +4,6 @@
     <g:HTMLPanel>
         <h3>Single Movie item</h3>
         <g:Label ui:field="movieId"></g:Label>
+        <g:Button ui:field="btnCheckMe" text="More"></g:Button>
     </g:HTMLPanel>
 </ui:UiBinder>

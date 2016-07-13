@@ -5,6 +5,7 @@ import com.wladek.project.client.responses.GetMoviesResponse;
 
 public class GetMoviesRequest extends  ActionImpl<GetMoviesResponse>{
 	private String method;
+	private Long movieId;
 	
 	public GetMoviesRequest(){
 	}
@@ -18,8 +19,16 @@ public class GetMoviesRequest extends  ActionImpl<GetMoviesResponse>{
 		this.method = method;
 	}
 	
+	public GetMoviesRequest(Long id){
+		this.movieId = id;
+	}
+	
 	public String getMethod() {
 		return method;
+	}
+
+	public Long getMovieId() {
+		return movieId;
 	}
 	
 }

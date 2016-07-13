@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
@@ -15,6 +16,8 @@ class MovieView extends ViewWithUiHandlers<MovieUiHandlers> implements MoviePres
 
     @UiField
     Label movieId;
+    @UiField
+    Button btnCheckMe;
     
     private MoviesDto movie;
     
@@ -35,5 +38,10 @@ class MovieView extends ViewWithUiHandlers<MovieUiHandlers> implements MoviePres
 		this.movie = movie2;
 		movieId.setText(movie.getName());
 	}
+
+	public Button getBtnCheckMe() {
+		return btnCheckMe;
+	}
+	
 	
 }

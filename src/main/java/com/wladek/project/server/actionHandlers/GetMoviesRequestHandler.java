@@ -18,9 +18,14 @@ public class GetMoviesRequestHandler implements ActionHandler<GetMoviesRequest, 
 		String action = request.getMethod();
 		
 		GetMoviesResponse response = null;
-		
-		if(action.equals("GET")){
-			response = new GetMoviesResponse(daoHelper.getAll());
+		if(action != null){
+			if(action.equals("ALL")){
+				response = new GetMoviesResponse(daoHelper.getAll());
+			}
+		}else{
+			if(request.getMovieId() != null){
+				response = new GetMoviesResponse(daoHelper.getOne(request.getMovieId()));
+			}
 		}
 		
 		return response;

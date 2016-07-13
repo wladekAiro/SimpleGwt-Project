@@ -87,7 +87,7 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 	}
 
 	private void bindMovies() {
-		GetMoviesRequest action = new GetMoviesRequest("GET");
+		GetMoviesRequest action = new GetMoviesRequest("ALL");
 		
 		dyAsync.execute(action, new AsyncCallback<GetMoviesResponse>() {
 
@@ -102,6 +102,7 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 				for(final MoviesDto m : result.getMoviesDtos()){
 					movieFactory.get(new AsyncCallback<MoviePresenter>() {
 
+						@SuppressWarnings("deprecation")
 						@Override
 						public void onSuccess(MoviePresenter result) {
 							result.bindMovie(m);
